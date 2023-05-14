@@ -1,0 +1,64 @@
+</head>
+<body>
+  <body style="background-color: rgb(233, 195, 195);">
+  <h1>ВХІД В ІНТЕРНЕТ - МАГАЗИН </h1>
+  <a href="registration.html"><span class="icon">📝</span>Реєстрація</a>
+  
+  <form id="registration-form">
+    <label for="login">Логін:</label>
+    <input type="text" id="login" name="login" required><br><br>
+    
+    <label for="password">Пароль:</label>
+    <input type="password" id="password" name="password" required><br><br>
+    
+    <label for="confirm_password">Повторіть пароль:</label>
+    <input type="password" id="confirm_password" name="confirm_password" required><br><br>
+    
+    
+    <input type="submit" value="Вхід">
+  </form>
+  
+
+  <div id="error-messages"></div>
+  <div class="silka2"> <a style="color: rgb(233, 195, 195);" href="index.html">Повернутись</a> </div>
+  
+  <script>
+    document.getElementById("registration-form").addEventListener("submit", function(event) {
+      var login = document.getElementById("login").value;
+      var password = document.getElementById("password").value;
+      var confirm_password = document.getElementById("confirm_password").value;
+      var errorMessages = [];
+
+      if (login.trim() === "") {
+        errorMessages.push("Будь ласка, введіть логін");
+      }
+
+      if (password.trim() === "") {
+        errorMessages.push("Будь ласка, введіть пароль");
+      }
+
+      if (confirm_password.trim() === "") {
+        errorMessages.push("Будь ласка, повторіть пароль");
+      } else if (password !== confirm_password) {
+        errorMessages.push("Паролі не співпадають");
+      }
+
+      if (errorMessages.length > 0) {
+        event.preventDefault(); // Зупинити відправку форми
+
+        var errorMessagesElement = document.getElementById("error-messages");
+        errorMessagesElement.innerHTML = ""; // Очистити попередні повідомлення про помилки
+
+        for (var i = 0; i < errorMessages.length; i++) {
+          var errorMessage = document.createElement("p");
+          errorMessage.className = "error-message";
+          errorMessage.textContent = errorMessages[i];
+          errorMessagesElement.appendChild(errorMessage);
+        }
+      }
+    });
+  </script>
+
+ 
+</body>
+</html>
